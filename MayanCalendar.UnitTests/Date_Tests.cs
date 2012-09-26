@@ -18,7 +18,7 @@ namespace Mayan.Calendar.UnitTests
             Assert.AreEqual(4, date.Tzolkin.Count);
             Assert.AreEqual(Kin.Ajaw, date.Tzolkin.Kin);
             Assert.AreEqual(8, date.Haab.Count);
-            Assert.AreEqual(Uinal.Cumku, date.Haab.Uninal);
+            Assert.AreEqual(Uinal.Cumku, date.Haab.Uinal);
         }
     }
 }

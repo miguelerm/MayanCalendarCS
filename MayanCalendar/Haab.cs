@@ -2,8 +2,24 @@
 {
     public struct Haab
     {
-        public int Count { get; private set; }
+        private int count;
+        private Uinal uinal;
+        private bool hasValue;
 
-        public Uinal Uninal { get; private set; }
+        public int Count
+        {
+            get
+            {
+                return hasValue ? count : 8;
+            }
+        }
+
+        public Uinal Uinal
+        {
+            get
+            {
+                return hasValue ? uinal : Uinal.Cumku;
+            }
+        }
     }
 }

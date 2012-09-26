@@ -2,8 +2,24 @@
 {
     public struct Tzolkin
     {
-        public int Count { get; private set; }
+        private bool hasValue;
+        private int count;
+        private Kin kin;
 
-        public Kin Kin { get; private set; }
+        public int Count
+        {
+            get
+            {
+                return hasValue ? count : 4;
+            }
+        }
+
+        public Kin Kin
+        {
+            get
+            {
+                return kin;
+            }
+        }
     }
 }
