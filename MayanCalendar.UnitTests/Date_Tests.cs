@@ -33,7 +33,7 @@ namespace Mayan.Calendar.UnitTests
         }
 
         [Test]
-        public void Constructor_ConFechaMayaDel13Baktun_GeneraFechaDel13DeDiciembre2012()
+        public void Constructor_AlFinalDel13Baktun_GeneraFechaDel13DeDiciembre2012()
         {
             Date date = new Date(12, 19, 19, 17, 19);
 
@@ -42,5 +42,15 @@ namespace Mayan.Calendar.UnitTests
             Assert.That(date.Year, Is.EqualTo(2012));
             Assert.That(date.Era, Is.EqualTo(Era.AfterCrist));
         }
+
+        [Test]
+        public void Constructor_AlFinalDel13Baktun_GeneraTzolkinCorrecto()
+        {
+            Date date = new Date(12, 19, 19, 17, 19);
+
+            Assert.That(date.Tzolkin.Count, Is.EqualTo(3));
+            Assert.That(date.Tzolkin.Kin, Is.EqualTo(Kin.Kawak));
+        }
+
     }
 }

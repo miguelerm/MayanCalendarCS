@@ -11,5 +11,11 @@
             Count = 4;
             Kin = Kin.Ajaw;
         }
+
+        public Tzolkin(int count, Kin kin)
+        {
+            Count = count;
+            Kin = kin;
+        }
     }
 }
