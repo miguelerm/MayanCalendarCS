@@ -8,8 +8,14 @@
 
         public Haab()
         {
-            Count = 8;
-            Uinal = Uinal.Cumku;
+            this.Count = 8;
+            this.Uinal = Uinal.Cumku;
+        }
+
+        public Haab(int count, Uinal uinal)
+        {
+            this.Count = count;
+            this.Uinal = uinal;
         }
     }
 }
