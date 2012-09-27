@@ -2,6 +2,15 @@
 {
     public struct Date
     {
+
+        public int Day { get; private set; }
+
+        public int Month { get; private set; }
+
+        public int Year { get; private set; }
+
+        public Era Era { get; private set; }
+
         public int Baktun { get; private set; }
 
         public int Katun { get; private set; }

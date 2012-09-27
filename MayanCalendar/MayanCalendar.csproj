@@ -43,6 +43,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Date.cs" />
+    <Compile Include="Era.cs" />
     <Compile Include="Haab.cs" />
     <Compile Include="Kin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

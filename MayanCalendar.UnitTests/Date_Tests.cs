@@ -20,5 +20,16 @@ namespace Mayan.Calendar.UnitTests
             Assert.AreEqual(8, date.Haab.Count);
             Assert.AreEqual(Uinal.Cumku, date.Haab.Uinal);
         }
+
+        [Test]
+        public void Constructor_SinParametros_CreaUnaFechaDel3114AntesDeCristo()
+        {
+            Mayan.Calendar.Date date = new Mayan.Calendar.Date();
+
+            Assert.That(date.Day, Is.EqualTo(13));
+            Assert.That(date.Month, Is.EqualTo(8));
+            Assert.That(date.Year, Is.EqualTo(3114));
+            Assert.That(date.Era, Is.EqualTo(Era.BeforeCrist));
+        }
     }
 }
