@@ -31,5 +31,16 @@ namespace Mayan.Calendar.UnitTests
             Assert.That(date.Year, Is.EqualTo(3114));
             Assert.That(date.Era, Is.EqualTo(Era.BeforeCrist));
         }
+
+        [Test]
+        public void Constructor_ConFechaMayaDel13Baktun_GeneraFechaDel13DeDiciembre2012()
+        {
+            Date date = new Date(12, 19, 19, 17, 19);
+
+            Assert.That(date.Day, Is.EqualTo(13));
+            Assert.That(date.Month, Is.EqualTo(12));
+            Assert.That(date.Year, Is.EqualTo(2012));
+            Assert.That(date.Era, Is.EqualTo(Era.AfterCrist));
+        }
     }
 }

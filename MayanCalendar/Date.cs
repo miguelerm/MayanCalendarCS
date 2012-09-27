@@ -2,6 +2,7 @@
 {
     public class Date
     {
+
         public int Day { get; private set; }
 
         public int Month { get; private set; }
@@ -37,6 +38,20 @@
             Kin = 0;
             Tzolkin = new Tzolkin();
             Haab = new Haab();
+        }
+
+        public Date(int baktun, int katun, int tun, int uinal, int kin)
+        {
+            Baktun = baktun;
+            Katun = katun;
+            Tun = tun;
+            Uinal = uinal;
+            Kin = kin;
+
+            Day = 13;
+            Month = 12;
+            Year = 2012;
+            Era = Era.AfterCrist;
         }
     }
 }
