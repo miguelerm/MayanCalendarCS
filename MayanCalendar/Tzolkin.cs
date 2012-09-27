@@ -1,25 +1,15 @@
 ﻿namespace Mayan.Calendar
 {
-    public struct Tzolkin
+    public class Tzolkin
     {
-        private bool hasValue;
-        private int count;
-        private Kin kin;
+        public int Count { get; private set; }
 
-        public int Count
-        {
-            get
-            {
-                return hasValue ? count : 4;
-            }
-        }
+        public Kin Kin { get; private set; }
 
-        public Kin Kin
+        public Tzolkin()
         {
-            get
-            {
-                return kin;
-            }
+            Count = 4;
+            Kin = Kin.Ajaw;
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿namespace Mayan.Calendar
 {
-    public struct Date
+    public class Date
     {
-
         public int Day { get; private set; }
 
         public int Month { get; private set; }
@@ -24,5 +23,20 @@
         public Tzolkin Tzolkin { get; private set; }
 
         public Haab Haab { get; private set; }
+
+        public Date()
+        {
+            Day = 13;
+            Month = 8;
+            Year = 3114;
+            Era = Era.BeforeCrist;
+            Baktun = 0;
+            Katun = 0;
+            Tun = 0;
+            Uinal = 0;
+            Kin = 0;
+            Tzolkin = new Tzolkin();
+            Haab = new Haab();
+        }
     }
 }

@@ -1,25 +1,15 @@
 ﻿namespace Mayan.Calendar
 {
-    public struct Haab
+    public class Haab
     {
-        private int count;
-        private Uinal uinal;
-        private bool hasValue;
+        public int Count { get; private set; }
 
-        public int Count
-        {
-            get
-            {
-                return hasValue ? count : 8;
-            }
-        }
+        public Uinal Uinal { get; private set; }
 
-        public Uinal Uinal
+        public Haab()
         {
-            get
-            {
-                return hasValue ? uinal : Uinal.Cumku;
-            }
+            Count = 8;
+            Uinal = Calendar.Uinal.Cumku;
         }
     }
 }
