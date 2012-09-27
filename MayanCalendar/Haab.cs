@@ -9,7 +9,7 @@
         public Haab()
         {
             Count = 8;
-            Uinal = Calendar.Uinal.Cumku;
+            Uinal = Uinal.Cumku;
         }
     }
 }

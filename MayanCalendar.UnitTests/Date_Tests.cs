@@ -10,15 +10,15 @@ namespace Mayan.Calendar.UnitTests
         {
             Mayan.Calendar.Date date = new Mayan.Calendar.Date();
 
-            Assert.AreEqual(0, date.Baktun);
-            Assert.AreEqual(0, date.Katun);
-            Assert.AreEqual(0, date.Tun);
-            Assert.AreEqual(0, date.Uinal);
-            Assert.AreEqual(0, date.Kin);
-            Assert.AreEqual(4, date.Tzolkin.Count);
-            Assert.AreEqual(Kin.Ajaw, date.Tzolkin.Kin);
-            Assert.AreEqual(8, date.Haab.Count);
-            Assert.AreEqual(Uinal.Cumku, date.Haab.Uinal);
+            Assert.That(date.Baktun, Is.EqualTo(0));
+            Assert.That(date.Katun, Is.EqualTo(0));
+            Assert.That(date.Tun, Is.EqualTo(0));
+            Assert.That(date.Uinal, Is.EqualTo(0));
+            Assert.That(date.Kin, Is.EqualTo(0));
+            Assert.That(date.Tzolkin.Count, Is.EqualTo(4));
+            Assert.That(date.Tzolkin.Kin, Is.EqualTo(Kin.Ajaw));
+            Assert.That(date.Haab.Count, Is.EqualTo(8));
+            Assert.That(date.Haab.Uinal, Is.EqualTo(Uinal.Cumku));
         }
 
         [Test]
