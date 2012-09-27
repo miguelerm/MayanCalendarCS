@@ -1,10 +1,10 @@
 ﻿namespace Mayan.Calendar
 {
     using KinName = Calendar.Kin;
+    using UinalName = Calendar.Uinal;
 
     public class Date
     {
-
         public int Day { get; private set; }
 
         public int Month { get; private set; }
@@ -51,12 +51,12 @@
             this.Kin = kin;
 
             this.Tzolkin = new Tzolkin(3, KinName.Kawak);
+            this.Haab = new Haab(2, UinalName.Kankin);
 
             this.Day = 13;
             this.Month = 12;
             this.Year = 2012;
             this.Era = Era.AfterCrist;
-
         }
     }
 }

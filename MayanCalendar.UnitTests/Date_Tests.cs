@@ -48,9 +48,19 @@ namespace Mayan.Calendar.UnitTests
         {
             Date date = new Date(12, 19, 19, 17, 19);
 
+            Assert.That(date.Tzolkin, Is.Not.Null);
             Assert.That(date.Tzolkin.Count, Is.EqualTo(3));
             Assert.That(date.Tzolkin.Kin, Is.EqualTo(Kin.Kawak));
         }
 
+        [Test]
+        public void Constructor_AlFinalDel13Baktun_GeneraHaabCorrecto()
+        {
+            Date date = new Date(12, 19, 19, 17, 19);
+
+            Assert.That(date.Haab, Is.Not.Null);
+            Assert.That(date.Haab.Count, Is.EqualTo(2));
+            Assert.That(date.Haab.Uinal, Is.EqualTo(Uinal.Kankin));
+        }
     }
 }
