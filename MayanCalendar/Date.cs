@@ -66,9 +66,9 @@
             this.Era = Era.AfterCrist;
         }
 
-        public Date(int year, int month, int day, Calendar.Era era)
+        public Date(int year, int month, int day, Calendar.Era era) : this()
         {
-            // TODO: Complete member initialization
+
         }
     }
 }
