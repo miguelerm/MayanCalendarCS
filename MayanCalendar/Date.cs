@@ -42,8 +42,16 @@
             this.Haab = new Haab();
         }
 
-        public Date(int baktun, int katun, int tun, int uinal, int kin)
+        public Date(int baktun, int katun, int tun, int uinal, int kin) : this()
         {
+
+            // Si se especifican todos los parametros a cero, se dejan
+            // los valores asignados por el constructor por defecto.
+            if (baktun + katun + tun + uinal + kin == 0)
+            {
+                return;
+            }
+
             this.Baktun = baktun;
             this.Katun = katun;
             this.Tun = tun;
