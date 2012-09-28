@@ -62,5 +62,16 @@ namespace Mayan.Calendar.UnitTests
             Assert.That(date.Haab.Count, Is.EqualTo(2));
             Assert.That(date.Haab.Uinal, Is.EqualTo(Uinal.Kankin));
         }
+
+        [Test]
+        public void Constructor_AlInicioDelPrimerBaktun_GeneraFechaDel13DeAgostoDe3114AC()
+        {
+            Date date = new Date(0, 0, 0, 0, 0);
+
+            Assert.That(date.Day, Is.EqualTo(13));
+            Assert.That(date.Month, Is.EqualTo(8));
+            Assert.That(date.Year, Is.EqualTo(3114));
+            Assert.That(date.Era, Is.EqualTo(Era.BeforeCrist));
+        }
     }
 }
