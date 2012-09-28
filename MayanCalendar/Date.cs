@@ -44,7 +44,6 @@
 
         public Date(int baktun, int katun, int tun, int uinal, int kin) : this()
         {
-
             // Si se especifican todos los parametros a cero, se dejan
             // los valores asignados por el constructor por defecto.
             if (baktun + katun + tun + uinal + kin == 0)
@@ -65,6 +64,11 @@
             this.Month = 12;
             this.Year = 2012;
             this.Era = Era.AfterCrist;
+        }
+
+        public Date(int year, int month, int day, Calendar.Era era)
+        {
+            // TODO: Complete member initialization
         }
     }
 }

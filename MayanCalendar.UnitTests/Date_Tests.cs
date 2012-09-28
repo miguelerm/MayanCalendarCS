@@ -73,5 +73,21 @@ namespace Mayan.Calendar.UnitTests
             Assert.That(date.Year, Is.EqualTo(3114));
             Assert.That(date.Era, Is.EqualTo(Era.BeforeCrist));
         }
+
+        [Test]
+        public void Constructor_ConFechaGregorianaDel31140813AC_GeneraFechaDelPrimerBaktun()
+        {
+            Date date = new Date(3114, 8, 13, Era.BeforeCrist);
+
+            Assert.That(date.Baktun, Is.EqualTo(0));
+            Assert.That(date.Katun, Is.EqualTo(0));
+            Assert.That(date.Tun, Is.EqualTo(0));
+            Assert.That(date.Uinal, Is.EqualTo(0));
+            Assert.That(date.Kin, Is.EqualTo(0));
+            Assert.That(date.Tzolkin.Count, Is.EqualTo(4));
+            Assert.That(date.Tzolkin.Kin, Is.EqualTo(Kin.Ajaw));
+            Assert.That(date.Haab.Count, Is.EqualTo(8));
+            Assert.That(date.Haab.Uinal, Is.EqualTo(Uinal.Cumku));
+        }
     }
 }
