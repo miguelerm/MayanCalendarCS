@@ -1,5 +1,7 @@
 ﻿namespace Mayan.Calendar
 {
+    using Mayan.Calendar.Properties;
+    using System;
     using KinName = Calendar.Kin;
     using UinalName = Calendar.Uinal;
 
@@ -42,8 +44,30 @@
             this.Haab = new Haab();
         }
 
-        public Date(int baktun, int katun, int tun, int uinal, int kin) : this()
+        public Date(int baktun, int katun, int tun, int uinal, int kin) 
+            : this()
         {
+            if (baktun > 19 || baktun < 0)
+            {
+                throw new ArgumentOutOfRangeException("baktun", string.Format(Resources.ArgumentOutOfRangeException_Message, "baktun", 0, 19));
+            }
+            if (katun > 19 || katun < 0)
+            {
+                throw new ArgumentOutOfRangeException("katun", string.Format(Resources.ArgumentOutOfRangeException_Message, "katun", 0, 19));
+            }
+            if (tun > 19 || tun < 0)
+            {
+                throw new ArgumentOutOfRangeException("tun", string.Format(Resources.ArgumentOutOfRangeException_Message, "tun", 0, 19));
+            }
+            if (uinal > 19 || uinal < 0)
+            {
+                throw new ArgumentOutOfRangeException("uinal", string.Format(Resources.ArgumentOutOfRangeException_Message, "uinal", 0, 19));
+            }
+            if (kin > 19 || kin < 0)
+            {
+                throw new ArgumentOutOfRangeException("kin", string.Format(Resources.ArgumentOutOfRangeException_Message, "kin", 0, 19));
+            }
+
             // Si se especifican todos los parametros a cero, se dejan
             // los valores asignados por el constructor por defecto.
             if (baktun + katun + tun + uinal + kin == 0)
@@ -66,9 +90,23 @@
             this.Era = Era.AfterCrist;
         }
 
-        public Date(int year, int month, int day, Calendar.Era era) : this()
+        public Date(int year, int month, int day, Calendar.Era era)
+            : this()
         {
+            if (year < 1)
+            {
+                throw new ArgumentOutOfRangeException("year", string.Format(Resources.ArgumentOutOfRangeException_Message, "year", 1, int.MaxValue));
+            }
 
+            if (month > 12 || month < 1)
+            {
+                throw new ArgumentOutOfRangeException("month", string.Format(Resources.ArgumentOutOfRangeException_Message, "month", 1, 12));
+            }
+
+            if (day > 31 || day < 1)
+            {
+                throw new ArgumentOutOfRangeException("day", string.Format(Resources.ArgumentOutOfRangeException_Message, "day", 1, 31));
+            }
         }
     }
 }
