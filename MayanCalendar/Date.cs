@@ -7,6 +7,8 @@
 
     public class Date
     {
+        private readonly int Correlation;
+
         public int Day { get; private set; }
 
         public int Month { get; private set; }
@@ -31,6 +33,7 @@
 
         public Date()
         {
+            this.Correlation = 584283; // Constante de correlacion GMT (Goodman, Martinez, Thompson)
             this.Day = 13;
             this.Month = 8;
             this.Year = 3114;
@@ -44,7 +47,7 @@
             this.Haab = new Haab();
         }
 
-        public Date(int baktun, int katun, int tun, int uinal, int kin) 
+        public Date(int baktun, int katun, int tun, int uinal, int kin)
             : this()
         {
             if (baktun > 19 || baktun < 0)
@@ -84,10 +87,7 @@
             this.Tzolkin = new Tzolkin(3, KinName.Kawak);
             this.Haab = new Haab(2, UinalName.Kankin);
 
-            this.Day = 13;
-            this.Month = 12;
-            this.Year = 2012;
-            this.Era = Era.AfterCrist;
+            this.ComputeGregorianDate();
         }
 
         public Date(int year, int month, int day, Calendar.Era era)
@@ -107,6 +107,58 @@
             {
                 throw new ArgumentOutOfRangeException("day", string.Format(Resources.ArgumentOutOfRangeException_Message, "day", 1, 31));
             }
+        }
+
+        private void ComputeGregorianDate()
+        {
+            // Se calcula el total de dias Julianos que existen en la fecha Maya especificada.
+
+            // Kin    =            =       1 día
+            // Uinal  = 20 Kines   =      20 días
+            // Tun    = 18 Uinales =     360 días
+            // Katún  = 20 Tunes   =   7,200 días
+            // Baktún = 20 katunes = 144,000 días
+
+            int totalJulianDays = (this.Kin * 1) + (this.Uinal * 20) + (this.Tun * 360) + (this.Katun * 7200) + (this.Baktun * 144000);
+
+            // Se suma la constante de correlación
+
+            totalJulianDays += Correlation;
+
+            // Se convierten los dias Julianos a una fecha Gregoriana
+
+            // Se utiliza la formula publicada en wikipedia http://en.wikipedia.org/wiki/Julian_day
+            // > La verdad no la he estudiado para ver que hace o para optimizarla
+            // > pero por el momento confiemos en que funciona.
+
+            var J = totalJulianDays + 0.5;
+            var j = J + 32044;
+            var g = IntPart(j / 146097);
+            var dg = j % 146097;
+            var c = IntPart(dg / 36524 + 1) * 3 / 4;
+            var dc = dg - c * 36524;
+            var b = IntPart(dc / 1461);
+            var db = dc % 1461;
+            var a = IntPart((IntPart(db / 365) + 1) * 3 / 4);
+            var da = db - a * 365;
+            var y = g * 400 + c * 100 + b * 4 + a;
+            var m = IntPart((da * 5 + 308) / 153) - 2;
+            var d = da - IntPart((m + 4) * 153 / 5) + 122;
+            var Y = y - 4800 + IntPart((m + 2) / 12);
+            var M = (m + 2) % 12 + 1;
+            var D = d + 1;
+
+            // TODO: La formula tendría que encapsularse en alguna otra clase.
+
+            this.Era = Y < 0 ? Era.BeforeCrist : Calendar.Era.AfterCrist;
+            this.Year = (int)Math.Abs(Y);
+            this.Month = (int)M;
+            this.Day = (int)D;
+        }
+
+        private int IntPart(double number)
+        {
+            return (int)Math.Floor(number);
         }
     }
 }

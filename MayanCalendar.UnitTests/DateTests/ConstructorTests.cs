@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Mayan.Calendar.UnitTests
+namespace Mayan.Calendar.UnitTests.DateTests
 {
     [TestFixture]
-    public class Date_Tests
+    public class ConstructorTests
     {
         [Test]
         public void Constructor_SinParametros_CreaUnaFechaDelPrimerDiaDelPrimerBaktun()
@@ -34,18 +34,18 @@ namespace Mayan.Calendar.UnitTests
         }
 
         [Test]
-        public void Constructor_AlFinalDel13Baktun_GeneraFechaDel13DeDiciembre2012()
+        public void Constructor_UltimoDiaDel12Baktun_GeneraFecha13DeDiciembreDe2012()
         {
             Date date = new Date(12, 19, 19, 17, 19);
 
-            Assert.That(date.Day, Is.EqualTo(13));
+            Assert.That(date.Day, Is.EqualTo(20));
             Assert.That(date.Month, Is.EqualTo(12));
             Assert.That(date.Year, Is.EqualTo(2012));
             Assert.That(date.Era, Is.EqualTo(Era.AfterCrist));
         }
 
         [Test]
-        public void Constructor_AlFinalDel13Baktun_GeneraTzolkinCorrecto()
+        public void Constructor_UltimoDiaDel12Baktun_GeneraTzolkinCorrecto()
         {
             Date date = new Date(12, 19, 19, 17, 19);
 
@@ -55,7 +55,7 @@ namespace Mayan.Calendar.UnitTests
         }
 
         [Test]
-        public void Constructor_AlFinalDel13Baktun_GeneraHaabCorrecto()
+        public void Constructor_UltimoDiaDel12Baktun_GeneraHaabCorrecto()
         {
             Date date = new Date(12, 19, 19, 17, 19);
 

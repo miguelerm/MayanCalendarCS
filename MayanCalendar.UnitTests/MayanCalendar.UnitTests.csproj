@@ -42,7 +42,8 @@
     <Compile Include="..\SharedItems\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Date_Tests.cs" />
+    <Compile Include="DateTests\ComputingTests.cs" />
+    <Compile Include="DateTests\ConstructorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
