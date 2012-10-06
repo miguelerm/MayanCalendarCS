@@ -139,6 +139,7 @@
             this.Haab = new Haab(2, UinalName.Kankin);
 
             this.ComputeGregorianDate();
+            this.ComputeHaabDate();
         }
 
         /// <summary>
@@ -168,7 +169,7 @@
         }
 
         /// <summary>
-        /// Calcula la fecha del calendario Gregoriano a la qu es equivalente la fecha Maya instanciada.
+        /// Calcula la fecha del calendario Gregoriano a la que es equivalente la fecha Maya instanciada.
         /// </summary>
         private void ComputeGregorianDate()
         {
@@ -215,6 +216,28 @@
             this.Year = (int)Math.Abs(Y);
             this.Month = (int)M;
             this.Day = (int)D;
+        }
+
+        /// <summary>
+        /// Calcula la fecha del calendario civil a la que es equivalente la fecha Maya instanciada.
+        /// </summary>
+        private void ComputeHaabDate()
+        {
+            int totalDays = (this.Kin * 1) + (this.Uinal * 20) + (this.Tun * 360) + (this.Katun * 7200) + (this.Baktun * 144000);
+
+            // Pero como el 0.0.0.0.0 inicia en 8 Cumku, y el 8 Cumku sería el día número 349 del
+            // Haab, entonces se le suman los 349 dias al total de días de la cuenta larga para
+            // lograr la equivalencia.
+
+            totalDays += 349;
+
+            int yearDay = totalDays % 365;
+
+            int montDay = (yearDay % 20) - 1;
+
+            int month = IntPart((yearDay) / 20) + 1;
+
+            this.Haab = new Haab(montDay, (Uinal)month);
         }
 
         /// <summary>

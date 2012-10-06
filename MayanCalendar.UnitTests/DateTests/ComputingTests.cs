@@ -34,7 +34,7 @@ namespace Mayan.Calendar.UnitTests.DateTests
             Date date = new Date(baktun, katun, tun, uinal, kin);
 
             Assert.That(date.Haab.Count, Is.EqualTo(expectedHaabCount));
-            Assert.That(date.Haab.Uinal, Is.EqualTo(expectedHaabUinal));
+            Assert.That(date.Haab.Uinal, Is.EqualTo((Uinal)expectedHaabUinal));
         }
 
         [TestCase(9, 8, 9, 13, 0, 8, Kin.Ajaw)]
