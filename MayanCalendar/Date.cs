@@ -5,32 +5,75 @@
     using KinName = Calendar.Kin;
     using UinalName = Calendar.Uinal;
 
+    /// <summary>
+    /// Fecha representada en Cuenta Larga Maya y que puede ser convertida a su equivalente en el
+    /// calendario Gregoriano.
+    /// </summary>
     public class Date
     {
+        /// <summary>
+        /// Constante de correlacion que se utilizará para la conversión de fechas.
+        /// </summary>
         private readonly int Correlation;
 
+        /// <summary>
+        /// Obtiene el día de la fecha en el calendario Gregoriano.
+        /// </summary>
         public int Day { get; private set; }
 
+        /// <summary>
+        /// Obtiene el mes de la fecha en el calendario Gregoriano.
+        /// </summary>
         public int Month { get; private set; }
 
+        /// <summary>
+        /// Obtiene el año de la fecha en el calendario Gragoriano.
+        /// </summary>
         public int Year { get; private set; }
 
+        /// <summary>
+        /// Obtiene la era de la fecha en el calendario Gregoriano (a.C. o d.C.).
+        /// </summary>
         public Era Era { get; private set; }
 
+        /// <summary>
+        /// Obtiene la cantidad de baktunes de la fecha en el calendario Maya.
+        /// </summary>
         public int Baktun { get; private set; }
 
+        /// <summary>
+        /// Obtiene la cantidad de katunes de la fecha en el calendario Maya.
+        /// </summary>
         public int Katun { get; private set; }
 
+        /// <summary>
+        /// Obtiene la cantidad de tunes de la fecha en el calendario Maya.
+        /// </summary>
         public int Tun { get; private set; }
 
+        /// <summary>
+        /// Obtiene la cantidad de uinales de la fecha en el calendario Maya.
+        /// </summary>
         public int Uinal { get; private set; }
 
+        /// <summary>
+        /// Obtiene la cantidad de kines de la fecha en el calendario Maya.
+        /// </summary>
         public int Kin { get; private set; }
 
+        /// <summary>
+        /// Obtiene el Tzolkin para la fecha en el calendario Maya.
+        /// </summary>
         public Tzolkin Tzolkin { get; private set; }
 
+        /// <summary>
+        /// Obtiene el Haab para la fecha en el calendario Maya.
+        /// </summary>
         public Haab Haab { get; private set; }
 
+        /// <summary>
+        /// Crea una instancia de una fecha Maya en el 0.0.0.0.0 4 Ajaw 8 Cumku
+        /// </summary>
         public Date()
         {
             this.Correlation = 584283; // Constante de correlacion GMT (Goodman, Martinez, Thompson)
@@ -47,6 +90,14 @@
             this.Haab = new Haab();
         }
 
+        /// <summary>
+        /// Crea una instancia de una fecha Maya en la cuenta larga indicada.
+        /// </summary>
+        /// <param name="baktun">Baktun en la fecha Maya.</param>
+        /// <param name="katun">Katun en la fecha Maya.</param>
+        /// <param name="tun">Tun en la fecha Maya.</param>
+        /// <param name="uinal">Uinal en la fecha Maya.</param>
+        /// <param name="kin">Kin en la fecha Maya.</param>
         public Date(int baktun, int katun, int tun, int uinal, int kin)
             : this()
         {
@@ -90,6 +141,13 @@
             this.ComputeGregorianDate();
         }
 
+        /// <summary>
+        /// Crea una instancia de la una fecha Maya para la fecha Gregoriana indicada.
+        /// </summary>
+        /// <param name="year">Año en el calendario Gregoriano.</param>
+        /// <param name="month">Mes en el calendario Gregoriano.</param>
+        /// <param name="day">Día en el calendario Gregoriano.</param>
+        /// <param name="era">Era en el calendario Gregoriano.</param>
         public Date(int year, int month, int day, Calendar.Era era)
             : this()
         {
@@ -109,6 +167,9 @@
             }
         }
 
+        /// <summary>
+        /// Calcula la fecha del calendario Gregoriano a la qu es equivalente la fecha Maya instanciada.
+        /// </summary>
         private void ComputeGregorianDate()
         {
             // Se calcula el total de dias Julianos que existen en la fecha Maya especificada.
@@ -156,6 +217,11 @@
             this.Day = (int)D;
         }
 
+        /// <summary>
+        /// Obtiene el valor entero de un número (recortando los decimales).
+        /// </summary>
+        /// <param name="number">Número del que se desea obtener el valor entero.</param>
+        /// <returns>Retorna la representancion entera (sin aproximación) del numero indicado.</returns>
         private int IntPart(double number)
         {
             return (int)Math.Floor(number);
