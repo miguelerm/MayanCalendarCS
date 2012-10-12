@@ -103,6 +103,6 @@
         /// <summary>
         /// Ajaw (Señor)
         /// </summary>
-        Ajaw = 0
+        Ajaw = 20
     }
 }

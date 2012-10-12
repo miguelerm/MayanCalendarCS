@@ -29,12 +29,12 @@ namespace Mayan.Calendar.UnitTests.DateTests
         [TestCase(12, 4, 0, 0, 0, 18, Uinal.Uo)]
         [TestCase(11, 17, 0, 0, 0, 8, Uinal.Pop)]
         [TestCase(10, 10, 0, 0, 0, 13, Uinal.Mol)]
-        public void Compute_ConFechaMayaValida_GeneraElHaabEsperado(int baktun, int katun, int tun, int uinal, int kin, int expectedHaabCount, int expectedHaabUinal)
+        public void Compute_ConFechaMayaValida_GeneraElHaabEsperado(int baktun, int katun, int tun, int uinal, int kin, int expectedHaabCount, Uinal expectedHaabUinal)
         {
             Date date = new Date(baktun, katun, tun, uinal, kin);
 
             Assert.That(date.Haab.Count, Is.EqualTo(expectedHaabCount));
-            Assert.That(date.Haab.Uinal, Is.EqualTo((Uinal)expectedHaabUinal));
+            Assert.That(date.Haab.Uinal, Is.EqualTo(expectedHaabUinal));
         }
 
         [TestCase(9, 8, 9, 13, 0, 8, Kin.Ajaw)]
@@ -44,7 +44,7 @@ namespace Mayan.Calendar.UnitTests.DateTests
         [TestCase(12, 4, 0, 0, 0, 10, Kin.Ajaw)]
         [TestCase(11, 17, 0, 0, 0, 11, Kin.Ajaw)]
         [TestCase(10, 10, 0, 0, 0, 13, Kin.Ajaw)]
-        public void Compute_ConFechaMayaValida_GeneraElTzolkinEsperado(int baktun, int katun, int tun, int uinal, int kin, int expectedTzolkinCount, int expectedTzolkinKin)
+        public void Compute_ConFechaMayaValida_GeneraElTzolkinEsperado(int baktun, int katun, int tun, int uinal, int kin, int expectedTzolkinCount, Kin expectedTzolkinKin)
         {
             Date date = new Date(baktun, katun, tun, uinal, kin);
 

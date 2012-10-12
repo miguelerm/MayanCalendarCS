@@ -140,6 +140,7 @@
 
             this.ComputeGregorianDate();
             this.ComputeHaabDate();
+            this.ComputeTzolkinDate();
         }
 
         /// <summary>
@@ -238,6 +239,34 @@
             int month = IntPart((yearDay) / 20) + 1;
 
             this.Haab = new Haab(montDay, (Uinal)month);
+        }
+
+        private void ComputeTzolkinDate()
+        {
+            int totalDays = (this.Kin * 1) + (this.Uinal * 20) + (this.Tun * 360) + (this.Katun * 7200) + (this.Baktun * 144000);
+
+            // Tomando en cuenta que el 0.0.0.0.0 inicia en 4 Ahau que es el día número 160 del
+            // Tzolkin, entonces se le suman los 160 dias al total de días de la cuenta larga para
+            // lograr la equivalencia.
+
+            totalDays += 160;
+
+            int yearDay = totalDays % 260;
+
+            int trecena = ((yearDay - 1) % 13) + 1;
+            int veintena = ((yearDay - 1) % 20) + 1;
+
+            if (trecena == 0)
+            {
+                trecena = 13;
+            }
+
+            if (veintena == 0)
+            {
+                veintena = 20;
+            }
+
+            this.Tzolkin = new Tzolkin(trecena, (KinName)veintena);
         }
 
         /// <summary>
