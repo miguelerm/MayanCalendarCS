@@ -51,5 +51,29 @@ namespace Mayan.Calendar.UnitTests.DateTests
             Assert.That(date.Tzolkin.Count, Is.EqualTo(expectedTzolkinCount));
             Assert.That(date.Tzolkin.Kin, Is.EqualTo(expectedTzolkinKin));
         }
+
+        [TestCase(603, 3, 24, 9, 8, 9, 13, 0, 13, Uinal.Pop, 8, Kin.Ajaw)]
+        [TestCase(683, 8, 29, 9, 12, 11, 5, 18, 11, Uinal.Yax, 6, Kin.Etznab)]
+        [TestCase(2012, 12, 21, 13, 0, 0, 0, 0, 3, Uinal.Kankin, 4, Kin.Ajaw)]
+        [TestCase(1007, 8, 13, 10, 9, 0, 0, 0, 13, Uinal.Mac, 2, Kin.Ajaw)]
+        [TestCase(1697, 7, 25, 12, 4, 0, 0, 0, 18, Uinal.Uo, 10, Kin.Ajaw)]
+        [TestCase(1559, 7, 30, 11, 17, 0, 0, 0, 8, Uinal.Pop, 11, Kin.Ajaw)]
+        [TestCase(1027, 4, 30, 10, 10, 0, 0, 0, 13, Uinal.Mol, 13, Kin.Ajaw)]
+        public void Compute_ConFechaGregorianaValida_GeneraLaFechaMayaEsperada(int year, int month, int day, int expectedBaktun, int expectedKatun, int expectedTun, int expectedUinal, int expectedKin, int expectedHaabCount, Uinal expectedHaabUinal, int expectedTzolkinCount, Kin expectedTzolkinKin)
+        {
+            Date date = new Date(year, month, day, Era.AfterCrist);
+
+            Assert.That(date.Baktun, Is.EqualTo(expectedBaktun));
+            Assert.That(date.Katun, Is.EqualTo(expectedKatun));
+            Assert.That(date.Tun, Is.EqualTo(expectedTun));
+            Assert.That(date.Uinal, Is.EqualTo(expectedUinal));
+            Assert.That(date.Kin, Is.EqualTo(expectedKin));
+
+            Assert.That(date.Haab.Count, Is.EqualTo(expectedHaabCount));
+            Assert.That(date.Haab.Uinal, Is.EqualTo(expectedHaabUinal));
+
+            Assert.That(date.Tzolkin.Count, Is.EqualTo(expectedTzolkinCount));
+            Assert.That(date.Tzolkin.Kin, Is.EqualTo(expectedTzolkinKin));
+        }
     }
 }
