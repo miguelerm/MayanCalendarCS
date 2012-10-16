@@ -153,9 +153,9 @@
         public Date(int year, int month, int day, Calendar.Era era)
             : this()
         {
-            if (year < 1)
+            if (year < 1 || year > 9999)
             {
-                throw new ArgumentOutOfRangeException("year", string.Format(Resources.ArgumentOutOfRangeException_Message, "year", 1, int.MaxValue));
+                throw new ArgumentOutOfRangeException("year", string.Format(Resources.ArgumentOutOfRangeException_Message, "year", 1, 9999));
             }
 
             if (month > 12 || month < 1)
@@ -167,6 +167,61 @@
             {
                 throw new ArgumentOutOfRangeException("day", string.Format(Resources.ArgumentOutOfRangeException_Message, "day", 1, 31));
             }
+
+            int febraryDaysCount = DateTime.IsLeapYear(year) ? 29 : 28;
+            int[] daysCount = { 31, febraryDaysCount, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+            if (day > daysCount[month - 1])
+            {
+                throw new InvalidOperationException();
+            }
+
+            // Si se especifica la fecha del inicio del calendario, se dejan los valores por defecto.
+            if (year == 3114 && month == 8 && day == 13 && era == Calendar.Era.BeforeCrist)
+            {
+                return;
+            }
+
+            this.Year = year;
+            this.Month = month;
+            this.Day = day;
+            this.Era = era;
+
+            this.ComputeMayanLongCount();
+            this.ComputeHaabDate();
+            this.ComputeTzolkinDate();
+        }
+
+        /// <summary>
+        /// Calcula la cuenta larga del calendario Maya en base a la fecha Gregoriana instanciada.
+        /// </summary>
+        private void ComputeMayanLongCount()
+        {
+            var a = IntPart((14 - Month) / 12);
+            var y = Year + 4800 - a;
+            var m = Month + (12 * a) - 3;
+
+            var totalJulianDays = Day + IntPart(((153 * m) + 2) / 5) + (365 * y) + IntPart(y / 4) - IntPart(y / 100) + IntPart(y / 400) - 32045;
+
+            totalJulianDays -= Correlation;
+
+            this.Baktun = IntPart(totalJulianDays / 144000);
+
+            var modulus = totalJulianDays % 144000;
+
+            this.Katun = IntPart(modulus / 7200);
+
+            modulus = modulus % 7200;
+
+            this.Tun = IntPart(modulus / 360);
+
+            modulus = modulus % 360;
+
+            this.Uinal = IntPart(modulus / 20);
+
+            modulus = modulus % 20;
+
+            this.Kin = modulus;
         }
 
         /// <summary>
